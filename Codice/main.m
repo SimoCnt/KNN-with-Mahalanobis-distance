@@ -8,7 +8,7 @@ dataname = 'sonar-all-data.txt';
 dataset = loadDataset(dataname);
 
 
-% Percentuali per la cardinalit√† del training set (minimo 60%, massimo 90%, a step del 5%) 
+% Percentuali per la cardinalit‡ del training set (minimo 60%, massimo 90%, a step del 5%) 
 perc = 0.6 : 0.05 : 0.9;
 
 % Numero dei k-nearest-neighbors (da 1 a 21 a step di 2)
@@ -20,10 +20,10 @@ classiPredette = [];
 % Matrice accuratezze
 Ac = zeros(10, length(k)); % 10 righe (numero delle esecuzioni) x 11 colonne (numero dei possibili valori di k)
 
-% Matrice specificit√†
+% Matrice specificit‡
 Sp = zeros(10, length(k));
 
-% Matrice sensivit√†
+% Matrice sensivit‡
 Se = zeros(10, length(k));
 
 
@@ -36,7 +36,7 @@ end
 covDataset = cov(dataUntarget);
 
 
-% Variazione della cardinalit√†¬†del training set
+% Variazione della cardinalit‡†del training set
 for i=1 : length(perc)
    
   % 10 esecuzioni 
@@ -61,7 +61,7 @@ for i=1 : length(perc)
         Ac(j,z)=sum(diag(mConfusione)) / sum(sum(mConfusione)); % il primo sum restituisce la somma di tutte le righe, il secondo fa la somma complessiva
         % nella matrice Ac le righe rappresentano gli indici dei run, mentre le colonne sono gli indici dei k 
         
-        % Calcolo della specificit√† e della sensitivit√†
+        % Calcolo della specificit‡ e della sensitivit‡
         TPR = mConfusione(1,1) / (mConfusione(1,1) + mConfusione(1,2));
         TNR = mConfusione(2,2) / (mConfusione(2,1) + mConfusione(2,2));
         Sp(j,z) = TNR;
@@ -72,7 +72,7 @@ for i=1 : length(perc)
   
     % Grafici
     figure('name','Classificatore K-Nearest Neighbors');
-    title(["Cardinalit√† del Training Set: " perc(i)*100 " % della dimensione del Dataset"]);
+    title(["Cardinalit‡ del Training Set: " perc(i)*100 " % della dimensione del Dataset"]);
     xlabel('k-vicini');
     ylabel('Performance');
     hold on
@@ -83,5 +83,5 @@ for i=1 : length(perc)
     mediaSensitivita = mean(Se);
     
     plot(k,mediaAccuratezze,'-rs', k,mediaSpecificita,'-gs', k,mediaSensitivita,'-bs');   
-    legend('Accuratezza','Specificit√†','Sensitivit√†');
+    legend('Accuratezza','Specificit‡','Sensitivit‡');
 end
